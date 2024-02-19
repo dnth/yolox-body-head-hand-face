@@ -675,10 +675,10 @@ def main():
             # )
 
         # Disable save output
-        if file_paths is not None:
-            basename = os.path.basename(file_paths[file_paths_count])
-            os.makedirs('output', exist_ok=True)
-            cv2.imwrite(f'output/{basename}', debug_image)
+        # if file_paths is not None:
+        #     basename = os.path.basename(file_paths[file_paths_count])
+        #     os.makedirs('output', exist_ok=True)
+        #     cv2.imwrite(f'output/{basename}', debug_image)
         
         if video_writer is not None:
             video_writer.write(debug_image)
