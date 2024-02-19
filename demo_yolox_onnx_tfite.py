@@ -680,11 +680,14 @@ def main():
         if video_writer is not None:
             video_writer.write(debug_image)
 
-        # cv2.imshow("test", debug_image)
+        try:
+            cv2.imshow("test", debug_image)
 
-        key = cv2.waitKey(1) if file_paths is None or disable_waitKey else cv2.waitKey(0)
-        if key == 27: # ESC
-            break
+            key = cv2.waitKey(1) if file_paths is None or disable_waitKey else cv2.waitKey(0)
+            if key == 27: # ESC
+                break
+        except:
+            pass
 
         df = pd.DataFrame(results)
         # print(df)
