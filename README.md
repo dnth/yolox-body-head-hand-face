@@ -13,5 +13,5 @@ apt install python3-pip
 ```
 
 ```
-pip install opencv-python-headless pandas onnxruntime tqdm pyarrow
+pip install opencv-python-headless pandas onnxruntime tqdm pyarrow matplotlib
 ```
