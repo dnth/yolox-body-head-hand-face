@@ -2,7 +2,7 @@
 
 
 ```
-python3 demo_yolox_onnx_tfite.py -m yolox_n_body_head_hand_face_dist_0221_0.3941_post_1x3x192x320.onnx -i sample_images/ -dwk
+python3 demo_yolox_onnx_tfite.py -m yolox_n_body_head_hand_face_dist_0221_0.3941_post_1x3x192x320.onnx -i -i /workspace/yolo_v8_training/oiv7_full/validation/ -dwk
 ```
 
 ## Install
@@ -27,5 +27,5 @@ pip install onnxruntime-gpu
 ```
 
 ```
-python3 demo_yolox_onnx_tfite.py -m yolox_n_body_head_hand_face_dist_0221_0.3941_post_1x3x640x640.onnx -i sample_images/ -ep cuda
+python3 demo_yolox_onnx_tfite.py -m yolox_n_body_head_hand_face_dist_0221_0.3941_post_1x3x640x640.onnx -i /workspace/yolo_v8_training/oiv7_full/validation/ -ep cuda
 ```
