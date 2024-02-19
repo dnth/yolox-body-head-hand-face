@@ -581,131 +581,82 @@ def main():
 
     file_paths_count = -1
     results = []
-    while True:
-        image: np.ndarray = None
-        if file_paths is not None:
-            file_paths_count += 1
-            if file_paths_count <= len(file_paths) - 1:
-                image = cv2.imread(file_paths[file_paths_count])
-            else:
-                break
-        else:
-            res, image = cap.read()
-            if not res:
-                break
-
-        print(f"{file_paths_count} of {len(file_paths)}")
-        debug_image = copy.deepcopy(image)
-        # debug_image_h = debug_image.shape[0]
-        debug_image_w = debug_image.shape[1]
-
-        start_time = time.perf_counter()
-        boxes = model(debug_image)
-            
-        # pp = pprint.PrettyPrinter(indent=4)
-        # pp.pprint(results)
- 
-        elapsed_time = time.perf_counter() - start_time
-        if file_paths is None:
-            cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
-            cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 1, cv2.LINE_AA)
-
-        for box in boxes:
-            classid: int = box.classid
-            color = (255,255,255)
-            if classid == 0:
-                color = (255,0,0)
-            elif classid == 1:
-                color = (0,0,255)
-            elif classid == 2:
-                color = (0,255,0)
-            elif classid == 3:
-                color = (0,200,255)
-
-            if classid != 3:
-                cv2.rectangle(debug_image, (box.x1, box.y1), (box.x2, box.y2), (255,255,255), 2)
-                cv2.rectangle(debug_image, (box.x1, box.y1), (box.x2, box.y2), color, 1)
-            else:
-                draw_dashed_rectangle(
-                    image=debug_image,
-                    top_left=(box.x1, box.y1),
-                    bottom_right=(box.x2, box.y2),
-                    color=color,
-                    thickness=2,
-                    dash_length=10
-                )
-            
-            res_dict = {
-                'filename': file_paths[file_paths_count],
-                'classid': box.classid,
-                'score': box.score,
-                'x1': box.x1,
-                'y1': box.y1,
-                'x2': box.x2,
-                'y2': box.y2
-            }
-        
-            results.append(res_dict)
-            
-            # cv2.putText(
-            #     debug_image,
-            #     f'{box.score:.2f}',
-            #     (
-            #         box.x1 if box.x1+50 < debug_image_w else debug_image_w-50,
-            #         box.y1-10 if box.y1-25 > 0 else 20
-            #     ),
-            #     cv2.FONT_HERSHEY_SIMPLEX,
-            #     0.7,
-            #     (255, 255, 255),
-            #     2,
-            #     cv2.LINE_AA,
-            # )
-            # cv2.putText(
-            #     debug_image,
-            #     f'{box.score:.2f}',
-            #     (
-            #         box.x1 if box.x1+50 < debug_image_w else debug_image_w-50,
-            #         box.y1-10 if box.y1-25 > 0 else 20
-            #     ),
-            #     cv2.FONT_HERSHEY_SIMPLEX,
-            #     0.7,
-            #     color,
-            #     1,
-            #     cv2.LINE_AA,
-            # )
-
-        # Disable save output
-        # if file_paths is not None:
-        #     basename = os.path.basename(file_paths[file_paths_count])
-        #     os.makedirs('output', exist_ok=True)
-        #     cv2.imwrite(f'output/{basename}', debug_image)
-        
-        if video_writer is not None:
-            video_writer.write(debug_image)
-
-        try:
-            cv2.imshow("test", debug_image)
-
-            key = cv2.waitKey(1) if file_paths is None or disable_waitKey else cv2.waitKey(0)
-            if key == 27: # ESC
-                break
-        except:
-            pass
-
-        df = pd.DataFrame(results)
-        df.to_parquet('detection_results.parquet', index=False)
-        # print(df)
-
-    if video_writer is not None:
-        video_writer.release()
-
-    if cap is not None:
-        cap.release()
 
     try:
-        cv2.destroyAllWindows()
-    except:
-        pass
+        while True:
+            image: np.ndarray = None
+            if file_paths is not None:
+                file_paths_count += 1
+                if file_paths_count <= len(file_paths) - 1:
+                    image = cv2.imread(file_paths[file_paths_count])
+                else:
+                    break
+            else:
+                res, image = cap.read()
+                if not res:
+                    break
+    
+            
+            debug_image = copy.deepcopy(image)
+            debug_image_w = debug_image.shape[1]
+    
+            start_time = time.perf_counter()
+            boxes = model(debug_image)
+    
+            elapsed_time = time.perf_counter() - start_time
+            
+            print(f"{file_paths_count} of {len(file_paths)} - Inference time: {elapsed_time*1000:.2f} ms")
+            
+            if file_paths is None:
+                cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
+                cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 1, cv2.LINE_AA)
+    
+            for box in boxes:
+                # Process each box, omitted for brevity
+    
+                res_dict = {
+                    'filename': file_paths[file_paths_count],
+                    'classid': box.classid,
+                    'score': box.score,
+                    'x1': box.x1,
+                    'y1': box.y1,
+                    'x2': box.x2,
+                    'y2': box.y2
+                }
+                results.append(res_dict)
+                
+            if video_writer is not None:
+                video_writer.write(debug_image)
+    
+            try:
+                cv2.imshow("test", debug_image)
+                key = cv2.waitKey(1) if file_paths is None or disable_waitKey else cv2.waitKey(0)
+                if key == 27: # ESC
+                    break
+            except Exception as e:
+                # print(f"Encountered an error while displaying image: {e}")
+                pass
+    
+    except KeyboardInterrupt:
+        print("Keyboard interrupt received. Saving results and exiting.")
+    finally:
+        # The finally block ensures that the saving happens regardless of how the try block was exited.
+        if results:  # Check if 'results' is not empty
+            df = pd.DataFrame(results)
+            df.to_parquet('detection_results.parquet', index=False)
+            print("Detection results saved to 'detection_results.parquet'.")
+    
+        if video_writer is not None:
+            video_writer.release()
+    
+        if cap is not None:
+            cap.release()
+    
+        try:
+            cv2.destroyAllWindows()
+        except Exception as e:
+            pass
+            # print(f"Encountered an error while destroying windows: {e}")
 
     
     
