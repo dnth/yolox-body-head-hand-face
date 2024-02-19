@@ -17,6 +17,8 @@ from abc import ABC, abstractmethod
 
 import pprint
 import pandas as pd
+from tqdm.auto import tqdm
+
 class Color(Enum):
     BLACK          = '\033[30m'
     RED            = '\033[31m'
@@ -592,6 +594,7 @@ def main():
             if not res:
                 break
 
+        print(f"{file_paths_count} of {len(file_paths)}")
         debug_image = copy.deepcopy(image)
         # debug_image_h = debug_image.shape[0]
         debug_image_w = debug_image.shape[1]
@@ -608,8 +611,6 @@ def main():
             cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 1, cv2.LINE_AA)
 
         for box in boxes:
-
-
             classid: int = box.classid
             color = (255,255,255)
             if classid == 0:
@@ -703,6 +704,7 @@ def main():
     except:
         pass
 
+    
     df.to_csv('detection_results.csv', index=False)
 
 if __name__ == "__main__":
