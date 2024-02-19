@@ -605,7 +605,7 @@ def main():
     
             elapsed_time = time.perf_counter() - start_time
             
-            # print(f"{file_paths_count} of {len(file_paths)} - Inference time: {elapsed_time*1000:.2f} ms")
+            print(f"{file_paths_count} of {len(file_paths)} - Inference time: {elapsed_time*1000:.2f} ms")
             
             if file_paths is None:
                 cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
