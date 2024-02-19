@@ -605,13 +605,36 @@ def main():
     
             elapsed_time = time.perf_counter() - start_time
             
-            print(f"{file_paths_count} of {len(file_paths)} - Inference time: {elapsed_time*1000:.2f} ms")
+            # print(f"{file_paths_count} of {len(file_paths)} - Inference time: {elapsed_time*1000:.2f} ms")
             
             if file_paths is None:
                 cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
                 cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 1, cv2.LINE_AA)
     
             for box in boxes:
+                # classid: int = box.classid
+                # color = (255,255,255)
+                # if classid == 0:
+                #     color = (255,0,0)
+                # elif classid == 1:
+                #     color = (0,0,255)
+                # elif classid == 2:
+                #     color = (0,255,0)
+                # elif classid == 3:
+                #     color = (0,200,255)
+
+                # if classid != 3:
+                #     cv2.rectangle(debug_image, (box.x1, box.y1), (box.x2, box.y2), (255,255,255), 2)
+                #     cv2.rectangle(debug_image, (box.x1, box.y1), (box.x2, box.y2), color, 1)
+                # else:
+                #     draw_dashed_rectangle(
+                #         image=debug_image,
+                #         top_left=(box.x1, box.y1),
+                #         bottom_right=(box.x2, box.y2),
+                #         color=color,
+                #         thickness=2,
+                #         dash_length=10
+                #     )
                 # Process each box, omitted for brevity
     
                 res_dict = {
