@@ -691,6 +691,7 @@ def main():
             pass
 
         df = pd.DataFrame(results)
+        df.to_parquet('detection_results.parquet', index=False)
         # print(df)
 
     if video_writer is not None:
@@ -705,7 +706,7 @@ def main():
         pass
 
     
-    df.to_csv('detection_results.csv', index=False)
+    
 
 if __name__ == "__main__":
     main()
