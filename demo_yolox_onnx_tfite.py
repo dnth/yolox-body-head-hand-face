@@ -658,10 +658,11 @@ def main():
                     }
                     results.append(res_dict)
             
-            if file_paths is not None:
-                basename = os.path.basename(file_paths[file_paths_count])
-                os.makedirs(f'{args.output_folder}', exist_ok=True)
-                cv2.imwrite(f'{args.output_folder}/{basename}', debug_image)
+            # Disable save image to reduce run time and to avoid copying the entire dataset to disk
+            # if file_paths is not None:
+            #     basename = os.path.basename(file_paths[file_paths_count])
+            #     os.makedirs(f'{args.output_folder}', exist_ok=True)
+            #     cv2.imwrite(f'{args.output_folder}/{basename}', debug_image)
 
             if video_writer is not None:
                 video_writer.write(debug_image)
