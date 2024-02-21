@@ -8,7 +8,7 @@ def run(img_dir, labels):
     idm = ImageDirManager(img_dir)
 
     if "files" not in st.session_state:
-        st.session_state["files"] = idm.get_all_files()
+        st.session_state["files"] = idm.get_files_with_annots()
         st.session_state["annotation_files"] = idm.get_exist_annotation_files()
         st.session_state["image_index"] = 0
     else:
@@ -16,7 +16,7 @@ def run(img_dir, labels):
         idm.set_annotation_files(st.session_state["annotation_files"])
     
     def refresh():
-        st.session_state["files"] = idm.get_all_files()
+        st.session_state["files"] = idm.get_files_with_annots()
         st.session_state["annotation_files"] = idm.get_exist_annotation_files()
         st.session_state["image_index"] = 0
 
