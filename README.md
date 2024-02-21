@@ -40,13 +40,25 @@ python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_di
 
 ## Comparison
 
+### YOLO_N
+YOLOX_N - 640x640
+```
+python demo_yolox_onnx_tfite.py -m models/yolox_n/yolox_n_body_head_hand_face_dist_0221_0.3941_post_1x3x640x640.onnx -i debug_images -ep cuda -dvw -o yolox_n_640x640 -dwk
+```
+
+YOLOX_N - 320x320
+```
+python demo_yolox_onnx_tfite.py -m models/yolox_n/yolox_n_body_head_hand_face_dist_0221_0.3941_post_1x3x640x640.onnx -i debug_images -ep cuda -dvw -o yolox_n_640x640 -dwk
+```
+
+### YOLO_S
 YOLOX_S - 640x640
 ```
 python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_dist_0189_0.4952_post_1x3x640x640.onnx -i debug_images -ep cuda -dvw -o yolox_s_640x640 -dwk
 ```
-
-YOLOX_N - 640x640
-
+YOLOX_S - 320x320
 ```
-python demo_yolox_onnx_tfite.py -m models/yolox_n/yolox_n_body_head_hand_face_dist_0221_0.3941_post_1x3x640x640.onnx -i debug_images -ep cuda -dvw -o yolox_n_640x640 -dwk
+python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_dist_0189_0.4952_post_1x3x320x320.onnx -i debug_images -ep cuda -dvw -o yolox_s_320x320 -dwk
 ```
+
+

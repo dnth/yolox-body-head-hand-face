@@ -588,6 +588,7 @@ def main():
 
     file_paths_count = -1
     results = []
+    inf_time = []
 
     try:
         while True:
@@ -614,6 +615,7 @@ def main():
             
             if file_paths is not None:
                 print(f"{file_paths_count} of {len(file_paths)} - Inference time: {elapsed_time*1000:.2f} ms")
+                inf_time.append(elapsed_time*1000)
             
             if file_paths is None:
                 cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
@@ -681,6 +683,9 @@ def main():
             df = pd.DataFrame(results)
             df.to_parquet('detection_results.parquet', index=False)
             print("Detection results saved to 'detection_results.parquet'.")
+            mean_inf_time = sum(inf_time) / len(inf_time)
+
+            print(f"Average Inference time: {mean_inf_time} ms per image")
     
         if video_writer is not None:
             video_writer.release()
