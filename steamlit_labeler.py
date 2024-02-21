@@ -105,5 +105,5 @@ def run(img_dir, labels):
                 im.set_annotation(i, select_label)
 
 if __name__ == "__main__":
-    custom_labels = ["", "dog", "cat"]
+    custom_labels = ["", "face", "person"]
     run("debug_images", custom_labels)
