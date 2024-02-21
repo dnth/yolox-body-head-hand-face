@@ -479,7 +479,7 @@ def main():
         '-o',
         '--output_folder',
         type=str,
-        default='output',
+        default='outputs',
         help='Path to save the image inference output',
     )
     parser.add_argument(
