@@ -62,3 +62,5 @@ python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_di
 ```
 
 
+## Image Labeler
+Based on https://github.com/lit26/streamlit-img-label
