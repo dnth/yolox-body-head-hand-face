@@ -476,6 +476,13 @@ def main():
         help='jpg, png images folder path.',
     )
     parser.add_argument(
+        '-o',
+        '--output_folder',
+        type=str,
+        default='output',
+        help='Path to save the image inference output',
+    )
+    parser.add_argument(
         '-ep',
         '--execution_provider',
         type=str,
@@ -648,7 +655,12 @@ def main():
                         'y2': box.y2
                     }
                     results.append(res_dict)
-                
+            
+            if file_paths is not None:
+                basename = os.path.basename(file_paths[file_paths_count])
+                os.makedirs(f'{args.output_folder}', exist_ok=True)
+                cv2.imwrite(f'{args.output_folder}/{basename}', debug_image)
+
             if video_writer is not None:
                 video_writer.write(debug_image)
     
