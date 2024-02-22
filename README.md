@@ -72,3 +72,7 @@ cd streamlit-img-label
 git checkout data-flywheel
 pip install -e .
 ```
+
+```
+streamlit run steamlit_labeler.py --server.fileWatcherType none 
+```

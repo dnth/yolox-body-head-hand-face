@@ -42,6 +42,14 @@ def run(img_dir, labels):
         else:
             st.warning("All images are annotated.")
             next_image()
+    
+    def remove_xml_file():
+        img_file_name = idm.get_image(st.session_state["image_index"])
+        xml_file_name = img_file_name.split(".")[0] + ".xml"
+        xml_file_name_path = os.path.join(img_dir, xml_file_name)
+        os.remove(xml_file_name_path)
+        print(f"Removed XML filename: {xml_file_name}")
+
 
     def go_to_image():
         file_index = st.session_state["files"].index(st.session_state["file"])
@@ -68,6 +76,7 @@ def run(img_dir, labels):
         st.button(label="Next image", on_click=next_image)
     st.sidebar.button(label="Next need annotate", on_click=next_annotate_file)
     st.sidebar.button(label="Refresh", on_click=refresh)
+    st.sidebar.button(label="Remove XML file", on_click=remove_xml_file)
 
     # Main content: annotate images
     img_file_name = idm.get_image(st.session_state["image_index"])
@@ -105,5 +114,5 @@ def run(img_dir, labels):
                 im.set_annotation(i, select_label)
 
 if __name__ == "__main__":
-    custom_labels = ["", "face", "person"]
+    custom_labels = ["face", "person"]
     run("debug_images", custom_labels)

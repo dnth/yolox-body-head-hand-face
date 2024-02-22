@@ -1,0 +1,26 @@
+<annotation>
+    <folder>debug_images</folder>
+    <filename>0320bbc92e400191.jpg</filename>
+    <path>/home/dnth/Desktop/yolox-body-head-hand-face/debug_images/0320bbc92e400191.jpg</path>
+    <source>
+        <database>Unknown</database>
+    </source>
+    <size>
+        <width>1024</width>
+        <height>683</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>235</xmin>
+            <ymin>363</ymin>
+            <xmax>349</xmax>
+            <ymax>450</ymax>
+        </bndbox>
+    </object>
+</annotation>
