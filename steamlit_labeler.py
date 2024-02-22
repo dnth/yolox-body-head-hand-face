@@ -3,12 +3,22 @@ import os
 from streamlit_img_label import st_img_label
 from streamlit_img_label.manage import ImageManager, ImageDirManager
 
+from streamlit_shortcuts import add_keyboard_shortcuts
+
+add_keyboard_shortcuts({
+    'a': "Previous image",
+    'd': "Next image",
+    'w': "Save",
+    's': "Remove XML file"
+})
+
+
 def run(img_dir, labels):
     st.set_option("deprecation.showfileUploaderEncoding", False)
     idm = ImageDirManager(img_dir)
 
     if "files" not in st.session_state:
-        st.session_state["files"] = idm.get_all_files()
+        st.session_state["files"] = idm.get_files_with_annots() # or .get_all_files
         st.session_state["annotation_files"] = idm.get_exist_annotation_files()
         st.session_state["image_index"] = 0
     else:
@@ -16,7 +26,7 @@ def run(img_dir, labels):
         idm.set_annotation_files(st.session_state["annotation_files"])
     
     def refresh():
-        st.session_state["files"] = idm.get_all_files()
+        st.session_state["files"] = idm.get_files_with_annots()
         st.session_state["annotation_files"] = idm.get_exist_annotation_files()
         st.session_state["image_index"] = 0
 
@@ -42,6 +52,14 @@ def run(img_dir, labels):
         else:
             st.warning("All images are annotated.")
             next_image()
+    
+    def remove_xml_file():
+        img_file_name = idm.get_image(st.session_state["image_index"])
+        xml_file_name = img_file_name.split(".")[0] + ".xml"
+        xml_file_name_path = os.path.join(img_dir, xml_file_name)
+        os.remove(xml_file_name_path)
+        st.warning(f"Removed XML filename: {xml_file_name}")
+
 
     def go_to_image():
         file_index = st.session_state["files"].index(st.session_state["file"])
@@ -68,6 +86,7 @@ def run(img_dir, labels):
         st.button(label="Next image", on_click=next_image)
     st.sidebar.button(label="Next need annotate", on_click=next_annotate_file)
     st.sidebar.button(label="Refresh", on_click=refresh)
+    st.sidebar.button(label="Remove XML file", on_click=remove_xml_file)
 
     # Main content: annotate images
     img_file_name = idm.get_image(st.session_state["image_index"])
@@ -76,7 +95,7 @@ def run(img_dir, labels):
     img = im.get_img()
     resized_img = im.resizing_img()
     resized_rects = im.get_resized_rects()
-    rects = st_img_label(resized_img, box_color="red", rects=resized_rects)
+    rects = st_img_label(resized_img, box_color="blue", rects=resized_rects)
 
     def annotate():
         im.save_annotation()
@@ -90,7 +109,7 @@ def run(img_dir, labels):
         preview_imgs = im.init_annotation(rects)
 
         for i, prev_img in enumerate(preview_imgs):
-            prev_img[0].thumbnail((200, 200))
+            prev_img[0].thumbnail((300, 300))
             col1, col2 = st.columns(2)
             with col1:
                 col1.image(prev_img[0])
@@ -105,5 +124,5 @@ def run(img_dir, labels):
                 im.set_annotation(i, select_label)
 
 if __name__ == "__main__":
-    custom_labels = ["", "dog", "cat"]
+    custom_labels = ["face", "person"]
     run("debug_images", custom_labels)

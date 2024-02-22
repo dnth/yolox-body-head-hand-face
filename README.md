@@ -63,4 +63,15 @@ python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_di
 
 
 ## Image Labeler
-To correct the annotations, use this streamlit plugin - https://github.com/lit26/streamlit-img-label
+Install
+
+```
+git clone https://github.com/dnth/streamlit-img-label/
+cd streamlit-img-label
+git checkout data-flywheel
+pip install -e .
+```
+
+```
+streamlit run steamlit_labeler.py --server.fileWatcherType none 
+```

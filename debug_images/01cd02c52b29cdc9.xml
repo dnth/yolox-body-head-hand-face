@@ -1,0 +1,81 @@
+<annotation>
+    <folder>debug_images</folder>
+    <filename>01cd02c52b29cdc9.jpg</filename>
+    <path>/home/dnth/Desktop/yolox-body-head-hand-face/debug_images/01cd02c52b29cdc9.jpg</path>
+    <source>
+        <database>Unknown</database>
+    </source>
+    <size>
+        <width>1024</width>
+        <height>683</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>face</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>189</xmin>
+            <ymin>189</ymin>
+            <xmax>273</xmax>
+            <ymax>278</ymax>
+        </bndbox>
+    </object>    <object>
+        <name>face</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>501</xmin>
+            <ymin>207</ymin>
+            <xmax>614</xmax>
+            <ymax>300</ymax>
+        </bndbox>
+    </object>    <object>
+        <name>face</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>775</xmin>
+            <ymin>111</ymin>
+            <xmax>931</xmax>
+            <ymax>284</ymax>
+        </bndbox>
+    </object>    <object>
+        <name>person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>2</xmin>
+            <ymin>118</ymin>
+            <xmax>400</xmax>
+            <ymax>673</ymax>
+        </bndbox>
+    </object>    <object>
+        <name>person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>368</xmin>
+            <ymin>135</ymin>
+            <xmax>731</xmax>
+            <ymax>556</ymax>
+        </bndbox>
+    </object>    <object>
+        <name>person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>655</xmin>
+            <ymin>91</ymin>
+            <xmax>1020</xmax>
+            <ymax>641</ymax>
+        </bndbox>
+    </object>
+</annotation>
