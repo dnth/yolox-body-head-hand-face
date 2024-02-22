@@ -58,12 +58,11 @@ python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_di
 ```
 YOLOX_S - 320x320
 ```
-python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_dist_0189_0.4952_post_1x3x320x320.onnx -i debug_images -ep cuda -dvw -o yolox_s_320x320 -dwk
+python demo_yolox_onnx_tfite.py -m models/yolox_s/yolox_s_body_head_hand_face_dist_0189_0.4952_post_1x3x320x320.onnx -i /workspace/yolo_v8_training/oiv7_full/train -ep cuda -dvw -dwk
 ```
 
 
 ## Image Labeler
-
 Install
 
 ```
