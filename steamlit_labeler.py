@@ -3,6 +3,16 @@ import os
 from streamlit_img_label import st_img_label
 from streamlit_img_label.manage import ImageManager, ImageDirManager
 
+from streamlit_shortcuts import add_keyboard_shortcuts
+
+add_keyboard_shortcuts({
+    'a': "Previous image",
+    'd': "Next image",
+    'w': "Save",
+    's': "Remove XML file"
+})
+
+
 def run(img_dir, labels):
     st.set_option("deprecation.showfileUploaderEncoding", False)
     idm = ImageDirManager(img_dir)
@@ -48,7 +58,7 @@ def run(img_dir, labels):
         xml_file_name = img_file_name.split(".")[0] + ".xml"
         xml_file_name_path = os.path.join(img_dir, xml_file_name)
         os.remove(xml_file_name_path)
-        print(f"Removed XML filename: {xml_file_name}")
+        st.warning(f"Removed XML filename: {xml_file_name}")
 
 
     def go_to_image():
@@ -85,7 +95,7 @@ def run(img_dir, labels):
     img = im.get_img()
     resized_img = im.resizing_img()
     resized_rects = im.get_resized_rects()
-    rects = st_img_label(resized_img, box_color="red", rects=resized_rects)
+    rects = st_img_label(resized_img, box_color="blue", rects=resized_rects)
 
     def annotate():
         im.save_annotation()
@@ -99,7 +109,7 @@ def run(img_dir, labels):
         preview_imgs = im.init_annotation(rects)
 
         for i, prev_img in enumerate(preview_imgs):
-            prev_img[0].thumbnail((200, 200))
+            prev_img[0].thumbnail((300, 300))
             col1, col2 = st.columns(2)
             with col1:
                 col1.image(prev_img[0])
