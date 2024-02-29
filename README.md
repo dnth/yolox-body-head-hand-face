@@ -3,6 +3,11 @@
 ## Install
 
 ```
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge-pypy3-Linux-x86_64.sh
+bash Miniforge-pypy3-Linux-x86_64.sh
+```
+
+```
 apt install python3
 apt install python3-pip
 ```
