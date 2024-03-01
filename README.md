@@ -43,6 +43,18 @@ cd models/yolox_x/
 gdown https://drive.google.com/uc?id=1DdjtOzzGbCy6Jwl_-F6ihR0L0Lxfq0-P
 ```
 
+## Download Detection Results
+
+Training set
+```
+gdown https://drive.google.com/file/d/1JL-MEiCHvb4YGTT_q63oFNjkc8Ypb46n/view?usp=sharing
+```
+
+Validation set
+```
+gdown https://drive.google.com/file/d/1mqtONldpayaQ97SH1p_UfdoH6nywVfYt/view?usp=sharing
+```
+
 ## Run Inference YOLOX_X
 ```
 python demo_yolox_onnx_tfite.py -m models/yolox_x/yolox_x_body_head_hand_face_dist_0154_0.5658_post_1x3x640x640.onnx -i /workspace/yolo_v8_training/oiv7_full/train -ep tensorrt -dvw -dwk
@@ -89,8 +101,10 @@ git clone https://github.com/dnth/streamlit-img-label/
 cd streamlit-img-label
 git checkout data-flywheel
 pip install -e .
+
+pip install streamlit-shortcuts
 ```
 
 ```
-streamlit run steamlit_labeler.py --server.fileWatcherType none 
+streamlit run steamlit_labeler.py --server.fileWatcherType none --server.address 0.0.0.0
 ```

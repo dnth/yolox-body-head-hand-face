@@ -125,4 +125,4 @@ def run(img_dir, labels):
 
 if __name__ == "__main__":
     custom_labels = ["face", "person"]
-    run("debug_images", custom_labels)
+    run("working_directory/", custom_labels)

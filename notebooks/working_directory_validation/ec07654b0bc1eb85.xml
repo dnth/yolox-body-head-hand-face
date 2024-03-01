@@ -1,0 +1,26 @@
+<annotation>
+    <folder>working_directory</folder>
+    <filename>ec07654b0bc1eb85.jpg</filename>
+    <path>/home/yolox-body-head-hand-face/notebooks/working_directory/ec07654b0bc1eb85.jpg</path>
+    <source>
+        <database>Unknown</database>
+    </source>
+    <size>
+        <width>591</width>
+        <height>1024</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>person</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>287</xmin>
+            <ymin>653</ymin>
+            <xmax>449</xmax>
+            <ymax>883</ymax>
+        </bndbox>
+    </object>
+</annotation>
