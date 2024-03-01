@@ -35,6 +35,19 @@ pip install opencv-python-headless pandas onnxruntime-gpu tqdm pyarrow matplotli
 ```
 
 
+## Download Model
+
+```
+pip install gdown
+cd models/yolox_x/
+gdown https://drive.google.com/uc?id=1DdjtOzzGbCy6Jwl_-F6ihR0L0Lxfq0-P
+```
+
+## Run Inference YOLOX_X
+```
+python demo_yolox_onnx_tfite.py -m models/yolox_x/yolox_x_body_head_hand_face_dist_0154_0.5658_post_1x3x640x640.onnx -i /workspace/yolo_v8_training/oiv7_full/train -ep tensorrt -dvw -dwk
+```
+
 ## Live Inference
 
 ```
